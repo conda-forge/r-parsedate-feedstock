@@ -43,10 +43,11 @@ test:
 
 about:
   home: https://github.com/gaborcsardi/parsedate
-  license: GPL-2
+  license: GPL-2.0-only
   summary: Parse dates automatically, without the need of specifying a format. Currently it includes the git date parser. It can also recognize and parse all ISO 8601 formats.
   license_family: GPL2
-  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
