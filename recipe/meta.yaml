@@ -1,6 +1,5 @@
 {% set version = "1.3.1" %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-parsedate
@@ -13,8 +12,7 @@ source:
   sha256: 1fc31ab9813b61680abf4f4c2705b8f484d56d1d3ef256df84b342b628b6d1b1
 
 build:
-  merge_build_host: true  # [win]
-  number: 1
+  number: 2
   rpaths:
     - lib/R/lib/
     - lib/
@@ -24,7 +22,9 @@ requirements:
     - cross-r-base {{ r_base }}  # [build_platform != target_platform]
     - r-rematch2                 # [build_platform != target_platform]
     - {{ compiler('c') }}              # [not win]
+    - {{ stdlib("c") }}                # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
     - {{ posix }}sed               # [win]
@@ -35,7 +35,6 @@ requirements:
     - r-rematch2
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-rematch2
 
 test:
